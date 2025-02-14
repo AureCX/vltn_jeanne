@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Button Mover</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 50vh;
+            border: 2px solid black;
+        }
+        .button {
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .fixed-button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the left button and watch it move!</h1>
+    <div class="container">
+        <button class="button" id="randomButton">Click Me</button>
+        <button class="button fixed-button">I'm Fixed</button>
+    </div>
+    
+    <script>
+        const button = document.getElementById("randomButton");
+        const container = document.querySelector(".container");
+
+        button.addEventListener("click", () => {
+            const maxX = container.clientWidth - button.clientWidth;
+            const maxY = container.clientHeight - button.clientHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        });
+    </script>
+</body>
+</html>
